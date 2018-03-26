@@ -1,0 +1,49 @@
+{
+  "name": "wexond-package-manager",
+  "version": "1.0.0",
+  "description": "A package manager for Wexond",
+  "main": "build/index",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "watch": "webpack-cli --mode development --watch",
+    "build-production": "cross-env NODE_ENV=production webpack-cli --mode production",
+    "lint": "prettier-eslint --write src/**/*.ts* && eslint --ext .tsx --ext .ts --ext .js src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wexond/wexond-package-manager.git"
+  },
+  "keywords": [
+    "package-manager",
+    "nodejs"
+  ],
+  "author": "wexond",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wexond/wexond-package-manager/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/wexond/wexond-package-manager#readme",
+  "devDependencies": {
+    "@types/node": "9.6.0",
+    "typescript": "2.7.2",
+    "vm2": "3.5.2",
+    "webpack": "4.2.0",
+    "webpack-cli": "2.0.13",
+    "dts-bundle": "0.7.3",
+    "dts-bundle-webpack": "1.0.0",
+    "prettier": "1.11.1",
+    "rimraf": "2.6.2",
+    "ts-loader": "4.0.1",
+    "url-loader": "1.0.1",
+    "eslint": "4.19.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
+    "prettier-eslint": "8.8.1",
+    "prettier-eslint-cli": "4.7.1"
+  }
+}
