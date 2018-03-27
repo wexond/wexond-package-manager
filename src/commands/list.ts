@@ -9,14 +9,17 @@ export default () =>
   new Promise((resolve: (plugins: Package[]) => void, reject) => {
     const packages = [];
 
-    fs.readdir(pluginsPath, (err, dirs) => {
+    fs.readdir(pluginsPath, async (err, dirs) => {
       if (err) {
         reject(err);
       }
 
       for (const dir of dirs) {
         const pkgDir = path.resolve(pluginsPath, dir);
-        packages.push(readPackage(pkgDir));
+        try {
+          const pkg = await readPackage(pkgDir);
+          packages.push(pkg);
+        } catch (e) {} // eslint-disable-line
       }
 
       resolve(packages);

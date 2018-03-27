@@ -1,8 +1,8 @@
-export default class Package {
-  public name: string;
-  public main: string;
-  public version: string;
-  public description: string;
-  public namespace: string;
-  public path: string;
-} // eslint-disable-line
+export default interface Package {
+  name: string;
+  main: string;
+  version: string;
+  description: string;
+  namespace: string;
+  path: string;
+}; // eslint-disable-line

@@ -8,18 +8,20 @@ export const readPackage = (dir: string) =>
     const packagePath = path.resolve(dir, 'package.json');
     const namespace = path.basename(dir);
 
-    if (exists(packagePath)) {
-      readFile(packagePath, 'utf8').then((data) => {
-        const pkg = JSON.parse(data);
+    exists(packagePath)
+      .then(() => {
+        readFile(packagePath, 'utf8').then((data) => {
+          const pkg = JSON.parse(data);
 
-        resolve({
-          ...pkg,
-          main: path.resolve(packagePath, pkg.main),
-          path: dir,
-          namespace,
+          resolve({
+            ...pkg,
+            main: path.resolve(dir, pkg.main),
+            path: dir,
+            namespace,
+          });
         });
+      })
+      .catch(() => {
+        reject(new Error(`Couldn't find package.json for plugin ${namespace}.`));
       });
-    } else {
-      reject(new Error(`Couldn't find package.json for plugin ${namespace}.`));
-    }
   });
