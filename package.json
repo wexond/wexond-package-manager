@@ -5,18 +5,15 @@
   "main": "build/index",
   "types": "build/index.d.ts",
   "scripts": {
-    "watch": "webpack-cli --mode development --watch",
-    "build-production": "cross-env NODE_ENV=production webpack-cli --mode production",
+    "watch": "tsc --watch",
+    "build-production": "tsc",
     "lint": "prettier-eslint --write src/**/*.ts* && eslint --ext .tsx --ext .ts --ext .js src/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wexond/wexond-package-manager.git"
   },
-  "keywords": [
-    "package-manager",
-    "nodejs"
-  ],
+  "keywords": ["package-manager", "nodejs"],
   "author": "wexond",
   "license": "MIT",
   "bugs": {
@@ -30,8 +27,6 @@
     "@types/node": "9.6.0",
     "typescript": "2.7.2",
     "vm2": "3.5.2",
-    "webpack": "4.2.0",
-    "webpack-cli": "2.0.13",
     "dts-bundle": "0.7.3",
     "dts-bundle-webpack": "1.0.0",
     "prettier": "1.11.1",

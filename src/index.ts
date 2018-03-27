@@ -1,4 +1,5 @@
 import install from './install';
 import run from './run';
+import list from './list';
 
-export { install, run };
+export default { install, run, list };
