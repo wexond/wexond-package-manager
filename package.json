@@ -25,15 +25,9 @@
   },
   "homepage": "https://github.com/wexond/wexond-package-manager#readme",
   "devDependencies": {
-    "@types/node": "9.6.0",
-    "typescript": "2.7.2",
     "vm2": "3.5.2",
-    "dts-bundle": "0.7.3",
-    "dts-bundle-webpack": "1.0.0",
     "prettier": "1.11.1",
     "rimraf": "2.6.2",
-    "ts-loader": "4.0.1",
-    "url-loader": "1.0.1",
     "eslint": "4.19.0",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-import": "2.9.0",
@@ -42,5 +36,9 @@
     "prettier-eslint": "8.8.1",
     "prettier-eslint-cli": "4.7.1",
     "typescript-eslint-parser": "14.0.0"
+  },
+  "dependencies": {
+    "@types/node": "9.6.0",
+    "typescript": "2.7.2"
   }
 }
