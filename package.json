@@ -7,7 +7,8 @@
   "scripts": {
     "watch": "tsc --watch",
     "build-production": "tsc",
-    "lint": "prettier-eslint --write src/**/*.ts* && eslint --ext .tsx --ext .ts --ext .js src/"
+    "lint": "prettier-eslint --write src/**/*.ts* && eslint --ext .tsx --ext .ts --ext .js src/",
+    "postinstall": "npm run build-production"
   },
   "repository": {
     "type": "git",
