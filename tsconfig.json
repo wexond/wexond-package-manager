@@ -4,7 +4,7 @@
     "baseUrl": "./src",
     "typeRoots": ["./node_modules/@types"],
     "noImplicitAny": false,
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es2015",
     "jsx": "react",
     "sourceMap": true,
