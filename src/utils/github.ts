@@ -32,9 +32,11 @@ export const getArchiveLink = (repo: string | GitHubRepository) => {
   return `https://github.com/${owner}/${name}/archive/${branch}.zip`;
 };
 
-export const cloneRepository = (repo: string | GitHubRepository, dest: string) => {
+export const cloneRepository = (repo: string | GitHubRepository, dest: string, options = {}) => {
   repo = repoTypeCheck(repo);
   return download(getArchiveLink(repo), dest, {
+    ...options,
+    useElectronNet: false,
     extract: true,
   });
 };

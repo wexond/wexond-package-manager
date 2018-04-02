@@ -1,14 +1,12 @@
-import { resolve } from 'path';
 import { cloneRepository, parseRepository } from '../utils/github';
 import config from '../config';
 
-export default (name: string) => {
+export default (name: string, options = {}) => {
   if (name.includes('/')) {
     // Probably the package is from a GitHub repo.
 
     const repo = parseRepository(name);
-    const dest = resolve(config.path, repo.name);
-    return cloneRepository(repo, dest);
+    return cloneRepository(repo, config.path, options);
   }
   return new Promise((res, reject) => {
     res(null);
