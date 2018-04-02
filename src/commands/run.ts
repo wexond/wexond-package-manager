@@ -1,4 +1,4 @@
-import { NodeVM } from 'vm2';
+import EasyVM from 'easy-vm';
 import { resolve } from 'path';
 
 import { readPackage } from '../utils/packages';
@@ -10,17 +10,15 @@ export default async (namespace: string, sandbox = {}) => {
   const pkg = await readPackage(pluginPath);
   const mainCode = await readFile(pkg.main, 'utf8');
 
-  const vm = new NodeVM({
-    console: 'inherit',
-    sandbox,
+  const vm = new EasyVM({
     require: {
-      external: true,
       builtin: ['*'],
-      root: './',
       mock: {
         fs: {},
       },
     },
+    sandbox,
+    console: true,
   });
 
   return vm.run(mainCode, pkg.main);
