@@ -3,10 +3,10 @@ import { resolve } from 'path';
 
 import { readPackage } from '../utils/packages';
 import { readFile } from '../utils/files';
-import { pluginsPath } from '../config';
+import config from '../config';
 
 export default async (namespace: string, sandbox = {}) => {
-  const pluginPath = resolve(pluginsPath, namespace);
+  const pluginPath = resolve(config.path, namespace);
   const pkg = await readPackage(pluginPath);
   const mainCode = await readFile(pkg.main, 'utf8');
 

@@ -1,4 +1,6 @@
 import { resolve } from 'path';
 import { homedir } from 'os';
 
-export const pluginsPath = resolve(homedir(), '.wexond', 'plugins');
+export default {
+  path: resolve(homedir(), '.wexond', 'plugins'),
+};
