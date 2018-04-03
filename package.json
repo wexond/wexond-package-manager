@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A package manager for Wexond",
   "main": "build/index",
-  "types": "build/index.d.ts",
+  "types": "build/build/index.d.ts",
   "scripts": {
     "watch": "webpack-cli --watch --mode development",
     "build-production": "webpack-cli --mode production",
@@ -17,10 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/wexond/wexond-package-manager.git"
   },
-  "keywords": [
-    "package-manager",
-    "nodejs"
-  ],
+  "keywords": ["package-manager", "nodejs"],
   "author": "wexond",
   "license": "MIT",
   "bugs": {

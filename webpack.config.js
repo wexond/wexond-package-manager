@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const DtsBundleWebpack = require('dts-bundle-webpack');
 
 const productionDevtool = 'source-map';
 const developmentDevtool = 'eval-source-map';
@@ -59,16 +58,6 @@ const config = {
     modules: ['node_modules'],
     extensions: ['.js', '.tsx', '.ts', '.json'],
   },
-
-  plugins: [
-    new DtsBundleWebpack({
-      name: 'nersent-ui',
-      main: './build/build/index.d.ts',
-      baseDir: './build',
-      out: './index.d.ts',
-      removeSource: true,
-    }),
-  ],
 };
 
 if (process.env.NODE_ENV === 'production') {
