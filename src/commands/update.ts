@@ -13,7 +13,7 @@ export default (namespace: string) =>
     const { branch } = parseRepository(packageRepo);
     const newPkgURL = `https://api.github.com/repos/${packageRepo}/contents/package.json?branch=${branch}`;
 
-    const { body } = await got(newPkgURL);
+    const { body } = await got(newPkgURL, { useElectronNet: false });
     const newPkg = JSON.parse(body);
 
     if (version !== newPkg.version) {
