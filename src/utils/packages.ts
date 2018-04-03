@@ -1,6 +1,6 @@
 import path from 'path';
 
-import { readFile, exists } from '../utils/files';
+import { readFile, exists, writeFile } from '../utils/files';
 import Package from '../models/package'; // eslint-disable-line
 
 export const readPackage = (dir: string) =>
@@ -25,3 +25,14 @@ export const readPackage = (dir: string) =>
         reject(new Error(`Couldn't find package.json for plugin ${namespace}.`));
       });
   });
+
+export function updatePackage(dir: string, json: Object) {
+  return readPackage(dir).then(data =>
+    writeFile(
+      data.path,
+      JSON.stringify({
+        ...data,
+        ...json,
+      }),
+    ));
+}

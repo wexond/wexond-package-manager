@@ -40,9 +40,11 @@
   },
   "dependencies": {
     "@types/download": "6.2.2",
+    "@types/got": "7.1.8",
     "@types/node": "9.6.0",
     "download": "6.2.5",
     "easy-vm": "nersent/easy-vm",
+    "got": "8.3.0",
     "typescript": "2.7.2"
   }
 }
