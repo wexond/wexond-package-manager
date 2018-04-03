@@ -15,10 +15,7 @@ export function readPackage(dir: string) {
 
           resolve({
             ...pkg,
-            main: path.resolve(dir, pkg.main),
-            path: dir,
             namespace,
-            package: pkg,
           });
         });
       })
@@ -33,7 +30,7 @@ export async function updatePackage(dir: string, json: object) {
   return writeFile(
     path.resolve(dir, 'package.json'),
     JSON.stringify({
-      ...pkg.package,
+      ...pkg,
       ...json,
     }),
   );

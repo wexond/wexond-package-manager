@@ -5,7 +5,6 @@ import { promisify } from 'util';
 
 export const readFile = promisify(fs.readFile);
 export const writeFile = promisify(fs.writeFile);
-export const unlink = promisify(fs.unlink);
 export const open = promisify(fs.open);
 
 export const exists = (path: string) =>
@@ -19,14 +18,19 @@ export const exists = (path: string) =>
       });
   });
 
+export const remove = (path: string) =>
+  new Promise((resolve) => {
+    rimraf(path, () => {
+      resolve();
+    });
+  });
+
 export const move = (path1: string, path2: string) =>
   new Promise((resolve, reject) => {
-    ncp(path1, path2, (err) => {
+    ncp(path1, path2, async (err) => {
       if (err) {
         reject(err);
       }
-      rimraf(path1, () => {
-        resolve();
-      });
+      await remove(path1);
     });
   });

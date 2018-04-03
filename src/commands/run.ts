@@ -8,7 +8,7 @@ import config from '../config';
 export default async (namespace: string, sandbox = {}) => {
   const pluginPath = resolve(config.path, namespace);
   const pkg = await readPackage(pluginPath);
-  const mainCode = await readFile(pkg.main, 'utf8');
+  const mainCode = await readFile(resolve(pluginPath, pkg.main), 'utf8');
 
   const vm = new EasyVM({
     require: {
