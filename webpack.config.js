@@ -9,6 +9,8 @@ const EXCLUDE = [/node_modules/];
 
 const OUTPUT_DIR = path.resolve(__dirname, 'build');
 
+console.log(INCLUDE);
+
 const config = {
   target: 'node',
 
