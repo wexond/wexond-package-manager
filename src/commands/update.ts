@@ -1,4 +1,4 @@
-import got from 'got';
+import request from 'request';
 import path from 'path';
 import install from './install';
 import config from '../config';
@@ -12,19 +12,41 @@ export default (namespace: string) =>
     const { packageRepo, version } = await readPackage(pluginPath);
     const { branch } = parseRepository(packageRepo);
 
-    const pkgInfo = JSON.parse((await got(
+    request(
       `https://api.github.com/repos/${packageRepo}/contents/package.json?branch=${branch}`,
-      { useElectronNet: false },
-    )).body);
-    const newPkg = JSON.parse((await got(pkgInfo.download_url)).body);
+      {
+        headers: {
+          'User-Agent': 'wexond-package-manager',
+        },
+      },
+      (err1, res1, pkgInfo) => {
+        if (err1) {
+          reject(err1);
+        }
 
-    if (version !== newPkg.version) {
-      try {
-        await remove(pluginPath);
-        await install(packageRepo);
-        resolve();
-      } catch (e) {
-        reject(e);
-      }
-    }
+        pkgInfo = JSON.parse(pkgInfo);
+
+        request(
+          pkgInfo.download_url,
+          {
+            headers: {
+              'User-Agent': 'wexond-package-manager',
+            },
+          },
+          async (err, res, newPkg) => {
+            newPkg = JSON.parse(newPkg);
+
+            if (version !== newPkg.version) {
+              try {
+                await remove(pluginPath);
+                await install(packageRepo);
+                resolve();
+              } catch (e) {
+                reject(e);
+              }
+            }
+          },
+        );
+      },
+    );
   });

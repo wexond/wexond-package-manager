@@ -5,10 +5,13 @@
   "main": "build/index",
   "types": "build/index.d.ts",
   "scripts": {
-    "watch": "tsc --watch",
-    "build-production": "tsc",
-    "lint": "prettier-eslint --write src/**/*.ts* && eslint --ext .tsx --ext .ts --ext .js src/",
+    "watch": "webpack-cli --watch --mode development",
+    "build-production": "webpack-cli --mode production",
+    "lint": "prettier-eslint --write src/**/*.ts && eslint --ext .ts --ext .js src/",
     "postinstall": "npm run build-production"
+  },
+  "bin": {
+    "wpm": "./bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -39,16 +42,25 @@
     "typescript-eslint-parser": "14.0.0"
   },
   "dependencies": {
+    "@types/decompress": "4.2.1",
     "@types/download": "6.2.2",
     "@types/got": "7.1.8",
     "@types/ncp": "2.0.1",
     "@types/node": "9.6.0",
+    "@types/request": "2.47.0",
     "@types/rimraf": "2.0.2",
-    "download": "6.2.5",
+    "chalk": "2.3.2",
+    "commander": "2.15.1",
+    "decompress": "4.2.0",
+    "dts-bundle-webpack": "1.0.0",
     "easy-vm": "nersent/easy-vm",
-    "got": "8.3.0",
     "ncp": "2.0.0",
+    "request": "2.85.0",
     "rimraf": "2.6.2",
-    "typescript": "2.7.2"
+    "ts-loader": "4.1.0",
+    "typescript": "2.7.2",
+    "url-loader": "1.0.1",
+    "webpack": "4.4.1",
+    "webpack-cli": "2.0.13"
   }
 }

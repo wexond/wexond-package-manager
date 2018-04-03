@@ -4,7 +4,7 @@ import config from '../config';
 import { cloneRepository, parseRepository } from '../utils/github';
 import { move } from '../utils/files';
 
-export default (name: string, options = {}) =>
+export default (name: string) =>
   new Promise(async (resolve, reject) => {
     if (name.includes('/')) {
       // Probably the package is from a GitHub repo.
@@ -13,7 +13,7 @@ export default (name: string, options = {}) =>
       try {
         const oldDir = path.resolve(config.path, `${repo.name}-${repo.branch}`);
         const dir = path.resolve(config.path, `${repo.name}`);
-        await cloneRepository(repo, config.path, options);
+        await cloneRepository(repo, config.path);
         await updatePackage(oldDir, {
           packageRepo: name,
         });

@@ -1,4 +1,8 @@
-import download from 'download';
+import request from 'request';
+import decompress from 'decompress';
+import { createWriteStream } from 'fs';
+import path from 'path';
+import { remove } from './files';
 
 export interface GitHubRepository {
   owner: string;
@@ -32,11 +36,25 @@ export const getArchiveLink = (repo: string | GitHubRepository) => {
   return `https://github.com/${owner}/${name}/archive/${branch}.zip`;
 };
 
-export const cloneRepository = (repo: string | GitHubRepository, dest: string, options = {}) => {
-  repo = repoTypeCheck(repo);
-  return download(getArchiveLink(repo), dest, {
-    ...options,
-    useElectronNet: false,
-    extract: true,
+export const cloneRepository = (repo: string | GitHubRepository, dest: string) =>
+  new Promise((resolve, reject) => {
+    repo = repoTypeCheck(repo);
+
+    const zipPath = path.resolve(dest, `${repo.name}.zip`);
+    request(getArchiveLink(repo))
+      .pipe(createWriteStream(zipPath))
+      .on('close', () => {
+        decompress(zipPath, dest)
+          .then(() => {
+            remove(zipPath).then(() => {
+              resolve();
+            });
+          })
+          .catch((e) => {
+            reject(e);
+          });
+      })
+      .on('error', (e) => {
+        reject(e);
+      });
   });
-};
