@@ -6,4 +6,5 @@ export default interface Package {
   namespace: string;
   path: string;
   packageRepo: string;
+  package: object;
 }; // eslint-disable-line
