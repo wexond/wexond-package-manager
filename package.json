@@ -45,10 +45,7 @@
     "@types/node": "9.6.0",
     "@types/request": "2.47.0",
     "@types/rimraf": "2.0.2",
-    "chalk": "2.3.2",
-    "commander": "2.15.1",
     "decompress": "4.2.0",
-    "dts-bundle-webpack": "1.0.0",
     "easy-vm": "nersent/easy-vm",
     "ncp": "2.0.0",
     "request": "2.85.0",
@@ -58,5 +55,9 @@
     "url-loader": "1.0.1",
     "webpack": "4.4.1",
     "webpack-cli": "2.0.13"
+  },
+  "dependencies": {
+    "chalk": "2.3.2",
+    "commander": "2.15.1"
   }
 }
