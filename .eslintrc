@@ -33,6 +33,7 @@
     "linebreak-style": "off",
     "no-restricted-globals": "off",
     "react/no-did-mount-set-state": "off",
-    "no-await-in-loop": "off"
+    "no-await-in-loop": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }

@@ -1,0 +1,15 @@
+language: node_js
+node_js: '9'
+sudo: enabled
+dist: trusty
+os:
+- linux
+script:
+- yarn test
+deploy:
+  provider: npm
+  email: sentialx@gmail.com
+  api_key:
+    secure: ipV36cCGLMgWfj9KLRivaIPCySLlBClG/M4mGtccOSPNJKr8ARzPiV8bd9ib6AWerR1XuVXNZijFrRclnQrJJvICrSKSBJjuhOb935v5tF5WyyvwmMnQIgQUNl4IxhOf/JdV7bshujv6YzD/KSxFVBP/aSYWKA8ZG2yGwHEw4do/AO/Q/tu3hsz7iAnZ3Fny1e/VZ86ODNuvEezKdpfwkKlyDS4RDugGwWHtKMgMboD1CP7Y4iqN9suF00t4ShT7lW6m8QHYOMbqTVqUHLUT2Lo/ToDbkIk8bY3W4T3JvUxtcCSdeuSh0bdYh7010oIZ8YdInP16IOM6KYXpfYuCIoECWRGtuLTAZzfono1iOMqIALgTk1sHuuxkh6y+H+kx2LhUV28iIqW9M2TXitPVy2xuAjoDHM12r1xwzfhJi4U3ykqbCRQbyP0BzRFLG1MBS5pI5zdE7SGTUOBS2l5aDVHzNOo5QXOTF5IedGuAbtJzuIDlLa4oXJbAUwmTovzFph0eF9iVH2G9HbauJ29n/Dy+HfFTlwWOTiKlXWZ/iwMXwspUXaydT+GcmIW4TNNByJb2cj+aaueJGkIXWUj+ypC1/teoxbpLkab+JogEWfNDGx/uVSmyF0jcAp8otqLefP58K8B+uXiA9E/K3wehoFyLOXGLDZzwlrEurSPbAx0=
+  on:
+    repo: wexond/wexond-package-manager

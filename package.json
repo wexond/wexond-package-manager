@@ -6,9 +6,10 @@
   "types": "build/build/index.d.ts",
   "scripts": {
     "watch": "webpack-cli --watch --mode development",
-    "build-production": "webpack-cli --mode production",
-    "lint": "prettier-eslint --write src/**/*.ts && eslint --ext .ts --ext .js src/",
-    "postinstall": "npm run build-production"
+    "build": "webpack-cli --mode production",
+    "lint": "eslint --ext .ts --ext .js src/",
+    "lint-fix": "prettier-eslint --write src/**/*.ts",
+    "test": "npm run build-production && npm run lint"
   },
   "bin": {
     "wpm": "./bin/index.js"
@@ -36,9 +37,7 @@
     "prettier": "1.11.1",
     "prettier-eslint": "8.8.1",
     "prettier-eslint-cli": "4.7.1",
-    "typescript-eslint-parser": "14.0.0"
-  },
-  "dependencies": {
+    "typescript-eslint-parser": "14.0.0",
     "@types/decompress": "4.2.1",
     "@types/download": "6.2.2",
     "@types/got": "7.1.8",
