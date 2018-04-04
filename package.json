@@ -1,5 +1,5 @@
 {
-  "name": "wexond-package-manager",
+  "name": "@wexond/wexond-package-manager",
   "version": "1.0.0",
   "description": "A package manager for Wexond",
   "main": "build/index",
