@@ -9,7 +9,7 @@
     "build": "webpack-cli --mode production",
     "lint": "eslint --ext .ts --ext .js src/",
     "lint-fix": "prettier-eslint --write src/**/*.ts",
-    "test": "npm run build-production && npm run lint"
+    "test": "npm run build && npm run lint"
   },
   "bin": {
     "wpm": "./bin/index.js"
