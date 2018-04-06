@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import path from 'path';
 import config from '../config';
-import { info, success } from '../utils/console';
+import { info, success, error } from '../utils/console';
 import { move } from '../utils/files';
 import { cloneRepository, parseRepository } from '../utils/github';
 import { npmInstall, updatePackage } from '../utils/packages';
@@ -31,6 +31,6 @@ export default async (namespace: string, logs = true) => {
       throw e;
     }
   } else {
-    throw new Error('Invalid package namespace');
+    error(chalk`Package name '{underline.bold ${namespace}}' is not a GitHub repository`, logs);
   }
 };

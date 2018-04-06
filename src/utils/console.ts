@@ -11,3 +11,8 @@ export const success = (text: string, logs = true) => {
   if (!logs) return;
   console.log(chalk`${prefix}{bgGreen.black SUCCESS} ✨  ${text}`);
 };
+
+export const error = (text: string, logs = true) => {
+  if (!logs) return;
+  console.log(chalk`${prefix}{bgRed.black ERROR} ${text}`);
+};
