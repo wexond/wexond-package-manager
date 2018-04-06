@@ -4,9 +4,11 @@ import { resolve } from 'path';
 import { readPackage } from '../utils/packages';
 import { readFile } from '../utils/files';
 import config from '../config';
+import { parseRepository } from '../utils/github';
 
 export default async (namespace: string, sandbox = {}) => {
-  const pluginPath = resolve(config.path, namespace);
+  const { name } = parseRepository(namespace);
+  const pluginPath = resolve(config.path, name);
   const pkg = await readPackage(pluginPath);
   const mainCode = await readFile(resolve(pluginPath, pkg.main), 'utf8');
 

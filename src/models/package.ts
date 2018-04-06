@@ -4,7 +4,6 @@ export default interface Package {
   version: string;
   description: string;
   namespace: string;
-  packageRepo: string;
   dependencies: {
     [key: string]: string;
   };

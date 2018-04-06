@@ -16,7 +16,7 @@ export const parseRepository = (repo: string): GitHubRepository => {
   let branch: string = 'master';
   let name: string = repo.split('/')[1];
 
-  if (name.includes('#')) {
+  if (name && name.includes('#')) {
     branch = name.split('#')[1];
     name = name.split('#')[0];
   }
@@ -38,9 +38,9 @@ export const getArchiveLink = (repo: string | GitHubRepository) => {
 
 export const cloneRepository = (repo: string | GitHubRepository, dest: string) =>
   new Promise((resolve, reject) => {
-    repo = repoTypeCheck(repo);
+    const { name, owner, branch } = repoTypeCheck(repo);
 
-    const zipPath = path.resolve(dest, `${repo.name}.zip`);
+    const zipPath = path.resolve(dest, `${owner}:${name}#${branch}.zip`);
     request(getArchiveLink(repo))
       .pipe(createWriteStream(zipPath))
       .on('close', () => {

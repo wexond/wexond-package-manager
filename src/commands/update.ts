@@ -9,13 +9,13 @@ import { readPackage } from '../utils/packages';
 import request from '../utils/request';
 
 export default async (namespace: string, logs = true) => {
-  const pluginPath = path.resolve(config.path, namespace);
-  const { packageRepo, version } = await readPackage(pluginPath);
-  const { branch } = parseRepository(packageRepo);
+  const { branch, name, owner } = parseRepository(namespace);
+  const pluginPath = path.resolve(config.path, name);
+  const { version } = await readPackage(pluginPath);
 
   try {
-    info(`Checking for updates for package {underline.bold ${namespace}}`, logs);
-    const pkgInfo = await request(`https://api.github.com/repos/${packageRepo}/contents/package.json?branch=${branch}`);
+    info(chalk`Checking for updates for package {underline.bold ${namespace}}`, logs);
+    const pkgInfo = await request(`https://api.github.com/repos/${owner}/${name}/contents/package.json?branch=${branch}`);
     const newPkg = await request(pkgInfo.download_url);
 
     if (version !== newPkg.version) {
@@ -23,7 +23,7 @@ export default async (namespace: string, logs = true) => {
       info(`New package version: ${newPkg.version}`, logs);
 
       await remove(pluginPath);
-      await install(packageRepo, logs);
+      await install(namespace, logs);
 
       success(chalk`Successfully updated package {underline.bold ${namespace}}!`, logs);
     } else {
