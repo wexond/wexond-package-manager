@@ -6,17 +6,16 @@ import { promisify } from 'util';
 export const readFile = promisify(fs.readFile);
 export const writeFile = promisify(fs.writeFile);
 export const open = promisify(fs.open);
+export const readdir = promisify(fs.readdir);
 
-export const exists = (path: string) =>
-  new Promise((resolve) => {
-    open(path, 'r')
-      .then(() => {
-        resolve(true);
-      })
-      .catch(() => {
-        resolve(false);
-      });
-  });
+export async function exists(path: string) {
+  try {
+    await open(path, 'r');
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
 export const remove = (path: string) =>
   new Promise((resolve) => {
@@ -32,5 +31,6 @@ export const move = (path1: string, path2: string) =>
         reject(err);
       }
       await remove(path1);
+      resolve();
     });
   });

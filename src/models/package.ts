@@ -5,4 +5,7 @@ export default interface Package {
   description: string;
   namespace: string;
   packageRepo: string;
+  dependencies: {
+    [key: string]: string;
+  };
 }; // eslint-disable-line

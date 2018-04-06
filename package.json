@@ -1,6 +1,6 @@
 {
   "name": "wexond-package-manager",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "A package manager for Wexond",
   "main": "build/index",
   "types": "build/build/index.d.ts",
@@ -9,7 +9,8 @@
     "build": "webpack-cli --mode production",
     "lint": "eslint --ext .ts --ext .js src/",
     "lint-fix": "prettier-eslint --write src/**/*.ts",
-    "test": "npm run build && npm run lint"
+    "test": "npm run build && npm run lint",
+    "wpm": "node ./bin/index.js"
   },
   "bin": {
     "wpm": "./bin/index.js"
@@ -29,35 +30,38 @@
   },
   "homepage": "https://github.com/wexond/wexond-package-manager#readme",
   "devDependencies": {
-    "eslint": "4.19.0",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-plugin-import": "2.9.0",
-    "eslint-plugin-jsx-a11y": "6.0.3",
-    "eslint-plugin-react": "7.7.0",
-    "prettier": "1.11.1",
-    "prettier-eslint": "8.8.1",
-    "prettier-eslint-cli": "4.7.1",
-    "typescript-eslint-parser": "14.0.0",
     "@types/decompress": "4.2.1",
     "@types/download": "6.2.2",
     "@types/got": "7.1.8",
     "@types/ncp": "2.0.1",
     "@types/node": "9.6.0",
+    "@types/npm": "2.0.29",
     "@types/request": "2.47.0",
     "@types/rimraf": "2.0.2",
     "decompress": "4.2.0",
     "easy-vm": "nersent/easy-vm",
+    "eslint": "4.19.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
     "ncp": "2.0.0",
+    "prettier": "1.11.1",
+    "prettier-eslint": "8.8.1",
+    "prettier-eslint-cli": "4.7.1",
     "request": "2.85.0",
     "rimraf": "2.6.2",
+    "shebang-loader": "0.0.1",
     "ts-loader": "4.1.0",
     "typescript": "2.7.2",
+    "typescript-eslint-parser": "14.0.0",
     "url-loader": "1.0.1",
     "webpack": "4.4.1",
     "webpack-cli": "2.0.13"
   },
   "dependencies": {
     "chalk": "2.3.2",
-    "commander": "2.15.1"
+    "commander": "2.15.1",
+    "npm": "5.8.0"
   }
 }

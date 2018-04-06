@@ -54,6 +54,10 @@ const config = {
     __filename: false,
   },
 
+  externals: {
+    npm: true,
+  },
+
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.tsx', '.ts', '.json'],

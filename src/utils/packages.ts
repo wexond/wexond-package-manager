@@ -3,26 +3,20 @@ import path from 'path';
 import { readFile, exists, writeFile } from '../utils/files';
 import Package from '../models/package'; // eslint-disable-line
 
-export function readPackage(dir: string) {
-  return new Promise((resolve: (pkg: Package) => void, reject) => {
-    const packagePath = path.resolve(dir, 'package.json');
-    const namespace = path.basename(dir);
+const npm = require('npm');
 
-    exists(packagePath)
-      .then(() => {
-        readFile(packagePath, 'utf8').then((data) => {
-          const pkg = JSON.parse(data);
+export async function readPackage(dir: string): Promise<Package> {
+  const packagePath = path.resolve(dir, 'package.json');
+  const namespace = path.basename(dir);
 
-          resolve({
-            ...pkg,
-            namespace,
-          });
-        });
-      })
-      .catch(() => {
-        reject(new Error(`Couldn't find package.json for plugin ${namespace}.`));
-      });
-  });
+  if (await exists(packagePath)) {
+    const data = JSON.parse(await readFile(packagePath, 'utf8'));
+    return {
+      ...data,
+      namespace,
+    };
+  }
+  throw new Error(`Couldn't find package.json for plugin ${namespace}.`);
 }
 
 export async function updatePackage(dir: string, json: object) {
@@ -34,4 +28,27 @@ export async function updatePackage(dir: string, json: object) {
       ...json,
     }),
   );
+}
+
+export async function npmInstall(dir: string, logs = true) {
+  return new Promise((resolve, reject) => {
+    npm.load({ loglevel: 'silent' }, (err) => {
+      if (err) {
+        return reject(err);
+      }
+
+      npm.commands.install(dir, [], (er, data) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(data);
+      });
+
+      npm.on('log', (message) => {
+        if (logs) {
+          console.log(message);
+        }
+      });
+    });
+  });
 }

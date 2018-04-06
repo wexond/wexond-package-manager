@@ -1,28 +1,24 @@
-import fs from 'fs';
 import path from 'path';
 
 import { readPackage } from '../utils/packages';
 import Package from '../models/package'; // eslint-disable-line
 import config from '../config';
-import { exists } from '../utils/files';
+import { exists, readdir } from '../utils/files';
 
-export default () =>
-  new Promise((resolve: (plugins: Package[]) => void, reject) => {
-    const packages = [];
+export default async (): Promise<Package[]> => {
+  const packages = [] as Package[];
 
-    fs.readdir(config.path, async (err, dirs) => {
-      if (err) {
-        reject(err);
+  try {
+    const dirs = await readdir(config.path);
+    for (const dir of dirs) {
+      const pkgDir = path.resolve(config.path, dir);
+      if (await exists(path.resolve(pkgDir, 'package.json'))) {
+        const pkg = await readPackage(pkgDir);
+        packages.push(pkg);
       }
-
-      for (const dir of dirs) {
-        const pkgDir = path.resolve(config.path, dir);
-        if (await exists(path.resolve(pkgDir, 'package.json'))) {
-          const pkg = await readPackage(pkgDir);
-          packages.push(pkg);
-        }
-      }
-
-      resolve(packages);
-    });
-  });
+    }
+    return packages;
+  } catch (e) {
+    throw e;
+  }
+};
