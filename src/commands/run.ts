@@ -5,7 +5,6 @@ import { readPackage } from '../utils/packages';
 import { readFile } from '../utils/files';
 import config from '../config';
 import { parseRepository } from '../utils/github';
-import { error } from '../utils/console';
 
 export default async (namespace: string, sandbox = {}) => {
   const { name } = parseRepository(namespace);
@@ -28,5 +27,5 @@ export default async (namespace: string, sandbox = {}) => {
     return vm.run(mainCode, pkg.main);
   }
 
-  error('Invalid package name');
+  throw new Error('Invalid package name');
 };

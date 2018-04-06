@@ -34,5 +34,5 @@ export default async (namespace: string, logs = true) => {
       throw e;
     }
   }
-  error('Invalid package name');
+  error('Invalid package name', logs);
 };
