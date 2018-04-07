@@ -6,7 +6,7 @@ import { readFile } from '../utils/files';
 import config from '../config';
 import { parseRepository } from '../utils/github';
 
-export default async (namespace: string, sandbox = {}) => {
+export default async (namespace: string, sandbox = {}, mock = {}) => {
   const { name } = parseRepository(namespace);
   if (name) {
     const pluginPath = resolve(config.path, name);
@@ -17,14 +17,14 @@ export default async (namespace: string, sandbox = {}) => {
       require: {
         builtin: ['*'],
         mock: {
-          fs: {},
+          ...mock,
         },
       },
       sandbox,
       console: true,
     });
 
-    return vm.run(mainCode, pkg.main);
+    return vm.run(mainCode, resolve(pluginPath, pkg.main));
   }
 
   throw new Error('Invalid package name');
