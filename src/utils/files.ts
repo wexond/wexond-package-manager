@@ -1,4 +1,4 @@
-import fs from 'fs';
+import * as fs from 'fs';
 import rimraf from 'rimraf';
 import { ncp } from 'ncp';
 import { promisify } from 'util';

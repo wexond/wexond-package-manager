@@ -6,10 +6,12 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es2015",
+    "esModuleInterop": true,
     "sourceMap": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "declaration": true
+    "declaration": true,
+    "lib": ["esnext"]
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules/**/*"]
