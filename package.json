@@ -1,6 +1,6 @@
 {
   "name": "wexond-package-manager",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "A package manager for Wexond",
   "main": "build/index",
   "types": "build/index.d.ts",
