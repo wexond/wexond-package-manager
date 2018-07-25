@@ -1,19 +1,25 @@
-import request from 'request';
+import https from 'https';
+import { WriteStream } from 'fs';
 
-export default (url: string): Promise<any> =>
+export default (url: string, file: WriteStream = null): Promise<any> =>
   new Promise((resolve, reject) => {
-    request(
-      url,
-      {
-        headers: {
-          'User-Agent': 'wexond-package-manager',
-        },
-      },
-      (err, res, data) => {
-        if (err) {
-          return reject(err);
+    https
+      .get(url, res => {
+        let data = '';
+
+        if (file) {
+          res.pipe(file);
         }
-        resolve(JSON.parse(data));
-      },
-    );
+
+        res.on('data', chunk => {
+          data += chunk;
+        });
+
+        res.on('end', () => {
+          resolve(JSON.parse(data));
+        });
+      })
+      .on('error', err => {
+        reject(err);
+      });
   });

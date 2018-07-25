@@ -16,7 +16,9 @@ export default async (namespace: string, logs = true) => {
 
     try {
       info(chalk`Checking for updates for package {underline.bold ${namespace}}`, logs);
-      const pkgInfo = await request(`https://api.github.com/repos/${owner}/${name}/contents/package.json?branch=${branch}`);
+      const pkgInfo = await request(
+        `https://api.github.com/repos/${owner}/${name}/contents/package.json?branch=${branch}`,
+      );
       const newPkg = await request(pkgInfo.download_url);
 
       if (version !== newPkg.version) {

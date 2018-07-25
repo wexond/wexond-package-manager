@@ -1,8 +1,9 @@
-import request from 'request';
 import decompress from 'decompress';
 import { createWriteStream } from 'fs';
 import path from 'path';
+
 import { remove } from './files';
+import request from './request';
 
 export interface GitHubRepository {
   owner: string;
@@ -41,20 +42,21 @@ export const cloneRepository = (repo: string | GitHubRepository, dest: string) =
     const { name, owner, branch } = repoTypeCheck(repo);
 
     const zipPath = path.resolve(dest, `${owner}:${name}#${branch}.zip`);
-    request(getArchiveLink(repo))
-      .pipe(createWriteStream(zipPath))
-      .on('close', () => {
+    const file = createWriteStream(zipPath);
+
+    request(getArchiveLink(repo), file)
+      .then(() => {
         decompress(zipPath, dest)
           .then(() => {
             remove(zipPath).then(() => {
               resolve();
             });
           })
-          .catch((e) => {
+          .catch(e => {
             reject(e);
           });
       })
-      .on('error', (e) => {
+      .catch(e => {
         reject(e);
       });
   });

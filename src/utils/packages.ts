@@ -1,4 +1,5 @@
 import path from 'path';
+import { spawn } from 'child_process';
 
 import { readFile, exists, writeFile } from '../utils/files';
 import Package from '../models/package'; // eslint-disable-line
@@ -39,17 +40,17 @@ export async function getDependencies(dir: string): Promise<string[]> {
 
 export async function npmInstall(dir: string, logs = true) {
   return new Promise(async (resolve, reject) => {
-    npm.load({ loglevel: 'silent' }, (err) => {
-      if (err) return reject(err);
+    const build = spawn('npm', ['install'], {
+      cwd: dir,
+      shell: true,
+    });
 
-      npm.commands.install(dir, [], (er, data) => {
-        if (err) reject(err);
-        resolve(data);
-      });
-
-      npm.on('log', (message) => {
-        if (logs) console.log(message);
-      });
+    build.on('close', code => {
+      if (code === 0) {
+        resolve(code);
+      } else {
+        reject(code);
+      }
     });
   });
 }

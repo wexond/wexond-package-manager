@@ -14,6 +14,7 @@
     "no-multi-str": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": "off",
     "react/sort-comp": "off",
     "no-return-assign": "off",
     "no-mixed-operators": "off",
@@ -33,10 +34,16 @@
     "linebreak-style": "off",
     "no-restricted-globals": "off",
     "react/no-did-mount-set-state": "off",
+    "no-loop-func": "off",
+    "no-unused-vars": "off",
+    "guard-for-in": "off",
     "no-await-in-loop": "off",
-    "import/no-extraneous-dependencies": "off",
-    "no-console": "off",
-    "consistent-return": "off",
-    "guard-for-in": "off"
+    "arrow-parens": "off",
+    "react/prefer-stateless-function": "off",
+    "react/no-array-index-key": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-label-var": "off",
+    "no-labels": "off"
   }
 }

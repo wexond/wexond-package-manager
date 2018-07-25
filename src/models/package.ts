@@ -7,4 +7,4 @@ export default interface Package {
   dependencies: {
     [key: string]: string;
   };
-}; // eslint-disable-line
+} // eslint-disable-line

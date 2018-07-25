@@ -18,7 +18,7 @@ export async function exists(path: string) {
 }
 
 export const remove = (path: string) =>
-  new Promise((resolve) => {
+  new Promise(resolve => {
     rimraf(path, () => {
       resolve();
     });
@@ -26,7 +26,7 @@ export const remove = (path: string) =>
 
 export const move = (path1: string, path2: string) =>
   new Promise((resolve, reject) => {
-    ncp(path1, path2, async (err) => {
+    ncp(path1, path2, async err => {
       if (err) {
         reject(err);
       }
