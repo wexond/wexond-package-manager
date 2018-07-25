@@ -4,7 +4,7 @@
     "baseUrl": "./src",
     "typeRoots": ["./node_modules/@types"],
     "noImplicitAny": true,
-    "module": "es2015",
+    "module": "commonjs",
     "target": "es2015",
     "sourceMap": true,
     "moduleResolution": "node",
