@@ -4,8 +4,6 @@ import { spawn } from 'child_process';
 import { readFile, exists, writeFile } from '../utils/files';
 import Package from '../models/package'; // eslint-disable-line
 
-const npm = require('npm');
-
 export async function readPackage(dir: string): Promise<Package> {
   const packagePath = path.resolve(dir, 'package.json');
   const namespace = path.basename(dir);
