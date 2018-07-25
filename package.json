@@ -1,9 +1,9 @@
 {
   "name": "wexond-package-manager",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A package manager for Wexond",
   "main": "build/index",
-  "types": "build/build/index.d.ts",
+  "types": "build/index.d.ts",
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
