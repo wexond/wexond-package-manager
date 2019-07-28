@@ -33,26 +33,26 @@
   },
   "homepage": "https://github.com/wexond/wexond-package-manager#readme",
   "devDependencies": {
-    "eslint": "5.13.0",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-plugin-import": "2.16.0",
-    "eslint-plugin-jsx-a11y": "6.2.1",
-    "eslint-plugin-react": "7.12.4",
-    "prettier": "1.16.4",
-    "prettier-eslint": "8.8.2",
-    "prettier-eslint-cli": "4.7.1",
+    "eslint": "6.1.0",
+    "eslint-config-airbnb": "17.1.1",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.14.3",
+    "prettier": "1.18.2",
+    "prettier-eslint": "9.0.0",
+    "prettier-eslint-cli": "5.0.0",
     "typescript-eslint-parser": "22.0.0",
-    "typescript": "3.3.3"
+    "typescript": "3.5.3"
   },
   "dependencies": {
     "chalk": "2.4.2",
-    "commander": "2.19.0",
+    "commander": "2.20.0",
     "@types/decompress": "4.2.3",
     "@types/ncp": "2.0.1",
-    "@types/node": "10.12.24",
+    "@types/node": "12.6.8",
     "@types/rimraf": "2.0.2",
     "decompress": "4.2.0",
-    "easy-vm": "1.2.1",
+    "easy-vm": "1.2.2",
     "rimraf": "2.6.3",
     "ncp": "2.0.0"
   }
