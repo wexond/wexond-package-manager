@@ -51,7 +51,7 @@
     "@types/ncp": "2.0.1",
     "@types/node": "12.6.8",
     "@types/rimraf": "2.0.2",
-    "decompress": "4.2.0",
+    "decompress": "4.2.1",
     "easy-vm": "1.2.2",
     "rimraf": "2.6.3",
     "ncp": "2.0.0"
